@@ -1,8 +1,11 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -14,12 +17,14 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane parent = new BorderPane();
-			Scene scene = new Scene(parent,400,400);
-			primaryStage.setScene(scene);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
+			Parent parent = loader.load();
+			Scene mainScreen = new Scene(parent);
+			primaryStage.setScene(mainScreen);
+			primaryStage.setTitle("Sample JavaFX application");
 			primaryStage.show();
 		}
-		catch (Exception e) {
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 		
